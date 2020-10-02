@@ -11,6 +11,8 @@ import UIKit
 class MovieListingVC: UIViewController {
     
     @IBOutlet weak var collectionMovies: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
         
     private let resusableIdentifier: String = "MovieListingCVC"
     //VIEWMODEL OBJECT
@@ -23,6 +25,7 @@ class MovieListingVC: UIViewController {
         
         collectionMovies.delegate = self
         collectionMovies.dataSource = self
+        searchBar.delegate = self
         collectionMovies.register(UINib(nibName: resusableIdentifier, bundle: nil), forCellWithReuseIdentifier: resusableIdentifier)
         
         viewModel.fetchMovies(1) {
@@ -31,6 +34,20 @@ class MovieListingVC: UIViewController {
     }
     
 }
+
+extension MovieListingVC: UISearchBarDelegate{
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if searchBar.text != ""{
+            viewModel.searchMovie(searchBar.text!) {
+                self.collectionMovies.reloadData()
+            }
+        }
+    }
+    
+}
+
+//MARK:- COLLECTIONVIEW EXTENSION
 extension MovieListingVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.Movies.count

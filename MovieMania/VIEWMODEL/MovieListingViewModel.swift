@@ -49,4 +49,35 @@ class MovieListingViewModel: NSObject {
         }
     }
     
+    //API FOR MOVIE SEARCH
+    func searchMovie(_ text: String,completion: @escaping()->()){
+        
+        let endPoint = baseURL + APIEndPoint.search.rawValue + "api_key=\(apiKey)&query=\(text)&language=en-US&page=1"
+        
+        NetworkManager.shared.getRequest(endPoint) { (result) in
+            switch result{
+            case .success(let responseData):
+                do{
+                    let jsonObj = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as Any
+                    print(">>>>>>\(jsonObj)")
+                    let decoder = JSONDecoder()
+                    let resp = try decoder.decode(MovieRootModel.self, from: responseData)
+                    self.Movies = []
+                    self.Movies = resp.results ?? []
+                    completion()
+                }catch{
+                    self.error = "Unable to parse the response"
+                    completion()
+                }
+                break
+            case .failure(let error):
+                self.error = error.localizedDescription
+                completion()
+                break
+            }
+        }
+
+        
+    }
+    
 }

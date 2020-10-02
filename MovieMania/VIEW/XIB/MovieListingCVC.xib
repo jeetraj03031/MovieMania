@@ -22,6 +22,11 @@
                         <constraints>
                             <constraint firstAttribute="width" secondItem="sC2-me-L2m" secondAttribute="height" multiplier="1:1.5" id="hTz-1l-eGA"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kip-zc-JAv">
                         <rect key="frame" x="97" y="165.5" width="40" height="40"/>
@@ -31,7 +36,7 @@
                             <constraint firstAttribute="height" constant="40" id="JKV-bQ-2VS"/>
                         </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" image="moon.circle" catalog="system"/>
+                        <state key="normal" image="fav"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNW-67-Lwb">
                         <rect key="frame" x="5" y="215.5" width="127" height="52.5"/>
@@ -63,6 +68,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="moon.circle" catalog="system" width="128" height="121"/>
+        <image name="fav" width="24" height="24"/>
     </resources>
 </document>

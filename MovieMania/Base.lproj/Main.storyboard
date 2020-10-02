@@ -16,8 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="52Z-AW-W4k">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="o0K-Xr-UnU">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="110" width="414" height="752"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ljH-L0-apV">
                                     <size key="itemSize" width="128" height="128"/>
@@ -30,20 +34,24 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="52Z-AW-W4k" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="E6s-w0-tuV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="o0K-Xr-UnU" secondAttribute="bottom" id="TiI-PU-Nea"/>
                             <constraint firstItem="o0K-Xr-UnU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YbY-9F-SA8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="o0K-Xr-UnU" secondAttribute="trailing" id="akc-dB-si1"/>
-                            <constraint firstItem="o0K-Xr-UnU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ymD-sy-54h"/>
+                            <constraint firstItem="52Z-AW-W4k" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="kqJ-c7-KgV"/>
+                            <constraint firstItem="52Z-AW-W4k" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qeD-If-QP8"/>
+                            <constraint firstItem="o0K-Xr-UnU" firstAttribute="top" secondItem="52Z-AW-W4k" secondAttribute="bottom" constant="10" id="qqK-Ph-NIg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="collectionMovies" destination="o0K-Xr-UnU" id="izN-lw-19W"/>
+                        <outlet property="searchBar" destination="52Z-AW-W4k" id="bnX-e0-A8r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="74"/>
+            <point key="canvasLocation" x="137.68115942028987" y="73.660714285714278"/>
         </scene>
     </scenes>
 </document>
