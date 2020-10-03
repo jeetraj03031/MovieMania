@@ -38,8 +38,8 @@ class MovieListingViewModel: NSObject {
             switch result{
             case .success(let responseData):
                 do{
-                    let jsonObj = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as Any
-                    print(">>>>>>\(jsonObj)")
+                   // let jsonObj = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as Any
+                   // print(">>>>>>\(jsonObj)")
                     let decoder = JSONDecoder()
                     let resp = try decoder.decode(MovieRootModel.self, from: responseData)
                     self.Movies = []
@@ -61,9 +61,9 @@ class MovieListingViewModel: NSObject {
     }
     
     //API FOR MOVIE SEARCH
-    func searchMovie(_ text: String,completion: @escaping()->()){
+    func searchMovie(_ text: String,page: Int,completion: @escaping()->()){
         
-        let endPoint = baseURL + APIEndPoint.search.rawValue + "api_key=\(apiKey)&query=\(text)&language=en-US&page=1"
+        let endPoint = baseURL + APIEndPoint.search.rawValue + "api_key=\(apiKey)&query=\(text)&language=en-US&page=\(String(page))"
         
         NetworkManager.shared.getRequest(endPoint) { (result) in
             switch result{
@@ -76,6 +76,8 @@ class MovieListingViewModel: NSObject {
                     let resp = try decoder.decode(MovieRootModel.self, from: responseData)
                     self.Movies = []
                     self.Movies = resp.results ?? []
+                    self.totalPages = resp.totalPages ?? 0
+                    self.totalResult = resp.totalResults ?? 0
                     completion()
                 }catch{
                     self.error = "Unable to parse the response"

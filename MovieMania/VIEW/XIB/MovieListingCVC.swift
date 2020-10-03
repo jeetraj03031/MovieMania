@@ -38,7 +38,7 @@ class MovieListingCVC: UICollectionViewCell {
         self.lblTitle.text = data.title
         if let posterPath = data.posterPath{
             let posterURL = basePosterURL + posterPath
-            self.imgPoster.sd_setImage(with: URL(string: posterURL), completed: nil)
+            self.imgPoster.sd_setImage(with: URL(string: posterURL), placeholderImage: UIImage(named: "placeholder"), completed: nil)
         }
         
         let status = movieVM.checkIfFavorite(id: id)

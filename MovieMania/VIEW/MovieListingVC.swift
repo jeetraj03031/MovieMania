@@ -33,13 +33,26 @@ class MovieListingVC: UIViewController {
         searchBar.delegate = self
         collectionMovies.register(UINib(nibName: resusableIdentifier, bundle: nil), forCellWithReuseIdentifier: resusableIdentifier)
         
-        viewModel.fetchMovies(1) {
+        fetchMovies()
+    }
+    
+    
+    func getSearch(){
+        viewModel.searchMovie(self.searchBar.text!, page: pageCount) {
             self.totalCount = self.viewModel.totalResult
             self.movies = self.viewModel.Movies
             self.collectionMovies.reloadData()
         }
+
     }
     
+    func fetchMovies(){
+        viewModel.fetchMovies(pageCount) {
+           self.totalCount = self.viewModel.totalResult
+           self.movies = self.viewModel.Movies
+           self.collectionMovies.reloadData()
+       }
+    }
 }
 
 extension MovieListingVC: UISearchBarDelegate{
@@ -52,6 +65,8 @@ extension MovieListingVC: UISearchBarDelegate{
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         viewModel.fetchMovies(1) {
+            self.pageCount = 1
+            self.movies = self.viewModel.Movies
             self.collectionMovies.reloadData()
         }
     }
@@ -59,12 +74,15 @@ extension MovieListingVC: UISearchBarDelegate{
     
     @objc func search(){
         if self.searchBar.text != ""{
-            viewModel.searchMovie(self.searchBar.text!) {
+            viewModel.searchMovie(self.searchBar.text!, page: 1) {
+                self.totalCount = self.viewModel.totalResult
+                self.movies = self.viewModel.Movies
                 self.collectionMovies.reloadData()
             }
         }else{
             viewModel.fetchMovies(1) {
-                
+                self.totalCount = self.viewModel.totalResult
+                self.movies = self.viewModel.Movies
                 self.collectionMovies.reloadData()
             }
         }
@@ -78,9 +96,16 @@ extension MovieListingVC: UICollectionViewDelegate,UICollectionViewDataSource,UI
         if indexPath.item == movies.count - 1 && movies.count < totalCount{
             pageCount += 1
             // Call API here
-            viewModel.fetchMovies(pageCount) {
-                self.movies += self.viewModel.Movies
-                self.collectionMovies.reloadData()
+            if searchBar.text != ""{
+                viewModel.searchMovie(searchBar.text!, page: self.pageCount) {
+                    self.movies += self.viewModel.Movies
+                    self.collectionMovies.reloadData()
+                }
+            }else{
+                viewModel.fetchMovies(pageCount) {
+                    self.movies += self.viewModel.Movies
+                    self.collectionMovies.reloadData()
+                }
             }
         }
     }
