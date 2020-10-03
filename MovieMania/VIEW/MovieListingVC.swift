@@ -17,7 +17,12 @@ class MovieListingVC: UIViewController {
     private let resusableIdentifier: String = "MovieListingCVC"
     //VIEWMODEL OBJECT
     private let viewModel: MovieListingViewModel = MovieListingViewModel()
-
+    
+    var movies: [Movie] = []
+    
+    var pageCount: Int = 1
+    var totalCount: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +34,8 @@ class MovieListingVC: UIViewController {
         collectionMovies.register(UINib(nibName: resusableIdentifier, bundle: nil), forCellWithReuseIdentifier: resusableIdentifier)
         
         viewModel.fetchMovies(1) {
+            self.totalCount = self.viewModel.totalResult
+            self.movies = self.viewModel.Movies
             self.collectionMovies.reloadData()
         }
     }
@@ -57,6 +64,7 @@ extension MovieListingVC: UISearchBarDelegate{
             }
         }else{
             viewModel.fetchMovies(1) {
+                
                 self.collectionMovies.reloadData()
             }
         }
@@ -65,13 +73,25 @@ extension MovieListingVC: UISearchBarDelegate{
 
 //MARK:- COLLECTIONVIEW EXTENSION
 extension MovieListingVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+  
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == movies.count - 1 && movies.count < totalCount{
+            pageCount += 1
+            // Call API here
+            viewModel.fetchMovies(pageCount) {
+                self.movies += self.viewModel.Movies
+                self.collectionMovies.reloadData()
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.Movies.count
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: resusableIdentifier, for: indexPath) as! MovieListingCVC
-        cell.setUpCell(viewModel.Movies[indexPath.item])
+        cell.setUpCell(movies[indexPath.item])
         return cell
     }
     

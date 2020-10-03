@@ -37,6 +37,9 @@
                         </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" image="fav"/>
+                        <connections>
+                            <action selector="btnFavouritePressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="YjX-2G-AEe"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNW-67-Lwb">
                         <rect key="frame" x="5" y="215.5" width="127" height="52.5"/>

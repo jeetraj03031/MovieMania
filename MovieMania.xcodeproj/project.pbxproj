@@ -25,6 +25,9 @@
 		C45AEA8B2527B1AA00F35C49 /* MovieRootModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AEA8A2527B1AA00F35C49 /* MovieRootModel.swift */; };
 		C45AEA8D2527B1E000F35C49 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AEA8C2527B1E000F35C49 /* Movie.swift */; };
 		C45AEA8F2527B1F700F35C49 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AEA8E2527B1F700F35C49 /* Date.swift */; };
+		C45AEA9525285C5A00F35C49 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AEA9425285C5A00F35C49 /* UserDefaultsManager.swift */; };
+		C45AEA9725285C6800F35C49 /* GenericProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AEA9625285C6800F35C49 /* GenericProtocol.swift */; };
+		C45AEA992528614A00F35C49 /* ButtonAnimationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45AEA982528614A00F35C49 /* ButtonAnimationFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +77,9 @@
 		C45AEA8A2527B1AA00F35C49 /* MovieRootModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRootModel.swift; sourceTree = "<group>"; };
 		C45AEA8C2527B1E000F35C49 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		C45AEA8E2527B1F700F35C49 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		C45AEA9425285C5A00F35C49 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		C45AEA9625285C6800F35C49 /* GenericProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericProtocol.swift; sourceTree = "<group>"; };
+		C45AEA982528614A00F35C49 /* ButtonAnimationFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonAnimationFactory.swift; sourceTree = "<group>"; };
 		E9258CBC87D28C6A52181591 /* Pods-MovieManiaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieManiaTests.debug.xcconfig"; path = "Target Support Files/Pods-MovieManiaTests/Pods-MovieManiaTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				C412E0A02526E20E00DFBF43 /* AppDelegate.swift */,
+				C45AEA9325285C3D00F35C49 /* HELPER */,
 				C45AEA892527B14500F35C49 /* MODEL */,
 				C412E0DC2526EDBE00DFBF43 /* NETWORKING */,
 				C412E0D82526ECB200DFBF43 /* VIEWMODEL */,
@@ -215,6 +222,16 @@
 			);
 			name = MODEL;
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		C45AEA9325285C3D00F35C49 /* HELPER */ = {
+			isa = PBXGroup;
+			children = (
+				C45AEA9425285C5A00F35C49 /* UserDefaultsManager.swift */,
+				C45AEA9625285C6800F35C49 /* GenericProtocol.swift */,
+				C45AEA982528614A00F35C49 /* ButtonAnimationFactory.swift */,
+			);
+			path = HELPER;
 			sourceTree = "<group>";
 		};
 		CAA0A03C4FB40227EE93820D /* Pods */ = {
@@ -473,9 +490,12 @@
 				C412E0DA2526ECE300DFBF43 /* MovieListingViewModel.swift in Sources */,
 				C412E0A12526E20E00DFBF43 /* AppDelegate.swift in Sources */,
 				C412E0DE2526EDCF00DFBF43 /* NetworkManager.swift in Sources */,
+				C45AEA992528614A00F35C49 /* ButtonAnimationFactory.swift in Sources */,
+				C45AEA9725285C6800F35C49 /* GenericProtocol.swift in Sources */,
 				C412E0D62526E9D600DFBF43 /* MovieListingCVC.swift in Sources */,
 				C412E0D22526E8A100DFBF43 /* MovieListingVC.swift in Sources */,
 				C45AEA882527AF7800F35C49 /* APP+CONSTANT.swift in Sources */,
+				C45AEA9525285C5A00F35C49 /* UserDefaultsManager.swift in Sources */,
 				C45AEA8D2527B1E000F35C49 /* Movie.swift in Sources */,
 				C45AEA8F2527B1F700F35C49 /* Date.swift in Sources */,
 				C45AEA8B2527B1AA00F35C49 /* MovieRootModel.swift in Sources */,

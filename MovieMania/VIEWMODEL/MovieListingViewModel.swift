@@ -19,11 +19,15 @@ class MovieListingViewModel: NSObject {
     var Movies: [Movie] = []
    // ERROR STRING
     var error: String?
-    
+    //
+    fileprivate let defaultsManager: UserDefaultsManager = UserDefaultsManager()
     //Searched Movies
     var searchedMovies: [Movie] = []
     //Store Movies 
     var tempMovies: [Movie] = []
+    //
+    var totalPages: Int = 0
+    var totalResult: Int = 0
     
     //MARK:- MOVIE API
     func fetchMovies(_ page: Int,completion: @escaping()->Void){
@@ -39,6 +43,8 @@ class MovieListingViewModel: NSObject {
                     let decoder = JSONDecoder()
                     let resp = try decoder.decode(MovieRootModel.self, from: responseData)
                     self.Movies = []
+                    self.totalPages = resp.totalPages ?? 0
+                    self.totalResult = resp.totalResults ?? 0
                     self.Movies = resp.results ?? []
                     completion()
                 }catch{
@@ -63,8 +69,8 @@ class MovieListingViewModel: NSObject {
             switch result{
             case .success(let responseData):
                 do{
-                    let jsonObj = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as Any
-                    print(">>>>>>\(jsonObj)")
+                    //let jsonObj = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as Any
+                    //print(">>>>>>\(jsonObj)")
 
                     let decoder = JSONDecoder()
                     let resp = try decoder.decode(MovieRootModel.self, from: responseData)
@@ -86,4 +92,27 @@ class MovieListingViewModel: NSObject {
         
     }
     
+}
+extension MovieListingViewModel: Likeable{
+    func likePressed(id: String) -> Bool {
+        let buttonStatus = defaultsManager.toggleFavorites(id: id, type: .favoriteMovies)
+         if (buttonStatus) {
+             return true
+         } else {
+             return false
+         }
+    }
+    
+    func checkIfFavorite(id: String) -> Bool {
+        if (defaultsManager.checkIfFavorite(id: id, type: .favoriteMovies)) {
+            return true
+        } else  {
+            return false
+        }
+    }
+    
+    
+    var favoriteType: Favorites{
+        .favoriteMovies
+    }
 }
