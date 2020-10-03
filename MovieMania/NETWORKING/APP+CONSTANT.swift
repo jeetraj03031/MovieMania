@@ -9,6 +9,9 @@
 import Foundation
 
 // BASE URL FOR MOVIE DB
-public let baseURL: String = "https://api.themoviedb.org/3/movie/"
+public let baseURL: String = "https://api.themoviedb.org/3/"
 // API KEY
 public let apiKey: String = "280613f170556c6d14ab19471dce71e2"
+
+//POSTER URL
+public let basePosterURL = "https://image.tmdb.org/t/p/w500"

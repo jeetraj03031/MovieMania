@@ -20,6 +20,11 @@ class MovieListingViewModel: NSObject {
    // ERROR STRING
     var error: String?
     
+    //Searched Movies
+    var searchedMovies: [Movie] = []
+    //Store Movies 
+    var tempMovies: [Movie] = []
+    
     //MARK:- MOVIE API
     func fetchMovies(_ page: Int,completion: @escaping()->Void){
         let endPoint = baseURL + APIEndPoint.nowPlaying.rawValue + "api_key=\(apiKey)&language=en-US&page=\(String(page))"
@@ -60,6 +65,7 @@ class MovieListingViewModel: NSObject {
                 do{
                     let jsonObj = try JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as Any
                     print(">>>>>>\(jsonObj)")
+
                     let decoder = JSONDecoder()
                     let resp = try decoder.decode(MovieRootModel.self, from: responseData)
                     self.Movies = []

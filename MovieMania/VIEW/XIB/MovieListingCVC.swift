@@ -24,6 +24,9 @@ class MovieListingCVC: UICollectionViewCell {
 
     func setUpCell(_ data: Movie){
         self.lblTitle.text = data.title
-        self.imgPoster.sd_setImage(with: URL(string: data.posterPath!),placeholderImage:  UIImage(named: "placeholder"),completed: nil)
+        if let posterPath = data.posterPath{
+            let posterURL = basePosterURL + posterPath
+            self.imgPoster.sd_setImage(with: URL(string: posterURL), completed: nil)
+        }
     }
 }

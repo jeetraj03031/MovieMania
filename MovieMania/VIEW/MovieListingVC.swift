@@ -37,14 +37,30 @@ class MovieListingVC: UIViewController {
 
 extension MovieListingVC: UISearchBarDelegate{
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        if searchBar.text != ""{
-            viewModel.searchMovie(searchBar.text!) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(search), object: nil)
+        perform(#selector(search), with: self, afterDelay: 0.2)
+
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.fetchMovies(1) {
+            self.collectionMovies.reloadData()
+        }
+    }
+    
+    
+    @objc func search(){
+        if self.searchBar.text != ""{
+            viewModel.searchMovie(self.searchBar.text!) {
+                self.collectionMovies.reloadData()
+            }
+        }else{
+            viewModel.fetchMovies(1) {
                 self.collectionMovies.reloadData()
             }
         }
     }
-    
 }
 
 //MARK:- COLLECTIONVIEW EXTENSION

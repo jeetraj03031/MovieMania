@@ -42,5 +42,6 @@ class NetworkManager: NSObject{
     }
 }
 enum APIEndPoint: String {
-    case nowPlaying = "now_playing?"
+    case nowPlaying = "movie/now_playing?"
+    case search = "search/movie?"
 }
