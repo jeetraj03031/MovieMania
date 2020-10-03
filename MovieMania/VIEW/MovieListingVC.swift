@@ -75,6 +75,7 @@ extension MovieListingVC: UISearchBarDelegate{
     @objc func search(){
         if self.searchBar.text != ""{
             viewModel.searchMovie(self.searchBar.text!, page: 1) {
+                self.pageCount = 1
                 self.totalCount = self.viewModel.totalResult
                 self.movies = self.viewModel.Movies
                 self.collectionMovies.reloadData()
