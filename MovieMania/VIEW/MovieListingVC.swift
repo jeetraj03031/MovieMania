@@ -36,16 +36,7 @@ class MovieListingVC: UIViewController {
         fetchMovies()
     }
     
-    
-    func getSearch(){
-        viewModel.searchMovie(self.searchBar.text!, page: pageCount) {
-            self.totalCount = self.viewModel.totalResult
-            self.movies = self.viewModel.Movies
-            self.collectionMovies.reloadData()
-        }
-
-    }
-    
+        
     func fetchMovies(){
         viewModel.fetchMovies(pageCount) {
            self.totalCount = self.viewModel.totalResult
